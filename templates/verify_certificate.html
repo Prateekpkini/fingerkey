@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Certificate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="form-container">
+    <h2>🔍 Verify Blood Group</h2>
+    <p>Predicted Blood Group: <strong>{{ predicted_group }}</strong></p>
+    <form action="{{ url_for('verify_certificate') }}" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="predicted_group" value="{{ predicted_group }}">
+      <label>Upload Blood Certificate</label>
+      <input type="file" name="certificate" accept="image/*,.pdf" required>
+      <button type="submit" class="btn">Verify Now</button>
+    </form>
+  </div>
+</body>
+</html>

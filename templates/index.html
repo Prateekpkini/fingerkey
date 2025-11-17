@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fingerprint Blood Group Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <span class="logo-circle">+</span>
+        <span class="logo-text">Hospital Diagnostics Portal</span>
+    </div>
+
+    <!-- Background pulse -->
+    <div class="pulse-bg"></div>
+
+    <div class="container">
+        <h1 class="title">Fingerprint Blood Group Prediction</h1>
+
+        <div class="upload-card">
+            <h2 class="subtitle">Upload Fingerprint Image</h2>
+
+            <form id="uploadForm" method="POST" action="/predict" enctype="multipart/form-data">
+
+                <div class="upload-box">
+                    <label class="drop-area" id="drop-area">
+                        <img src="https://i.imgur.com/3tVnQFh.png" class="fp-icon">
+                        <p class="drag-text"><strong>Drag & Drop Here</strong><br>or click to upload</p>
+                        <input type="file" name="fingerprint" id="fileInput" hidden>
+                    </label>
+
+                    <ul class="tips-list">
+                        <li>Accepts JPG / PNG / BMP</li>
+                        <li>Upload a clear fingerprint image</li>
+                        <li>Avoid shadows or blur</li>
+                    </ul>
+                </div>
+
+                <button class="predict-btn" type="submit">Predict Blood Group</button>
+            </form>
+        </div>
+
+        <!-- Result Section -->
+        {% if prediction %}
+        <div class="result-card">
+            <h2 class="result-text">
+                🩸 Predicted Blood Group: <span>{{ prediction }}</span>
+            </h2>
+
+            <p class="confidence-text">✨ Confidence: <span class="conf-value">{{ confidence }}</span></p>
+        </div>
+        {% endif %}
+
+        <p class="footer">Powered by Hospital AI Labs</p>
+        <p class="footer-small">© 2025 Hospital Diagnostics – All Rights Reserved</p>
+    </div>
+
+</body>
+</html>
