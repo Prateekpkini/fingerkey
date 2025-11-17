@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
 :root {
-    --primary-color: #6a11cb;
-    --secondary-color: #2575fc;
-    --text-color: #ffffff;
-    --card-bg-color: rgba(255, 255, 255, 0.1);
-    --card-border-color: rgba(255, 255, 255, 0.2);
+    --primary-color: #8e44ad;
+    --secondary-color: #3498db;
+    --text-color: #ecf0f1;
+    --card-bg-color: rgba(0, 0, 0, 0.2);
+    --card-border-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     color: var(--text-color);
     overflow-x: hidden;
@@ -30,7 +30,8 @@ body {
 
 .navbar-brand {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
 }
 
 .navbar-brand .fa-fingerprint {
@@ -42,6 +43,7 @@ body {
 .nav-link {
     font-weight: 600;
     transition: color 0.3s ease;
+    font-size: 1.1rem;
 }
 
 .nav-link:hover {
@@ -55,12 +57,13 @@ body {
 
 .hero-section h1 {
     font-weight: 700;
-    font-size: 3.5rem;
+    font-size: 4rem;
     text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
 }
 
 .hero-section .lead {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 300;
 }
 
@@ -69,7 +72,7 @@ body {
     border: 1px solid var(--card-border-color);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 15px;
+    border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     transition: transform 0.3s ease;
 }
@@ -80,20 +83,24 @@ body {
 
 .card-title {
     font-weight: 600;
+    font-size: 1.5rem;
 }
 
 .form-label {
     font-weight: 400;
+    font-size: 1.1rem;
 }
 
 .form-control {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     border: 1px solid var(--card-border-color);
     color: var(--text-color);
+    border-radius: 10px;
+    padding: 12px;
 }
 
 .form-control:focus {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     border-color: var(--secondary-color);
     box-shadow: 0 0 10px var(--secondary-color);
     color: var(--text-color);
@@ -107,10 +114,11 @@ body {
     background: var(--secondary-color);
     border: none;
     font-weight: 600;
-    padding: 12px 30px;
+    padding: 15px 30px;
     border-radius: 50px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 1.1rem;
 }
 
 .btn-primary:hover {
@@ -126,6 +134,7 @@ body {
 .result-card .display-2 {
     color: var(--secondary-color);
     text-shadow: 0 0 15px var(--secondary-color);
+    font-weight: 700;
 }
 
 .footer {
@@ -136,26 +145,6 @@ body {
     width: 100%;
 }
 
-/* --- App-specific enhancements --- */
-.preview img#previewImg{ max-width:120px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); display:block }
-.preview { align-items:center }
-
-.spinner{ width:32px; height:32px; border-radius:50%; border:4px solid rgba(255,255,255,0.12); border-top-color:var(--secondary-color); animation:spin 1s linear infinite; margin: 0 auto }
-@keyframes spin{ to{ transform:rotate(360deg) } }
-
-/* Small-screen tweaks */
-@media (max-width: 576px){
-    .hero-section h1{ font-size:2rem }
-    .card{ padding:18px }
-    .preview img#previewImg{ max-width:96px }
-}
-
-/* Flash notices */
-.flash{ background: rgba(0,0,0,0.25); padding:10px 12px; border-radius:8px; margin-bottom:12px }
-
-/* subtle focus ring for accessibility */
-input[type="file"]:focus, .btn:focus { outline: 3px solid rgba(37,117,252,0.12); outline-offset: 4px }
-
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -163,20 +152,15 @@ input[type="file"]:focus, .btn:focus { outline: 3px solid rgba(37,117,252,0.12);
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 117, 252, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(37, 117, 252, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 117, 252, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(52, 152, 219, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
 }
 
-.hero-section h1, .hero-section .lead {
-    animation: fadeIn 1s ease-out;
-}
-
-.card {
+.hero-section h1, .hero-section .lead, .card {
     animation: fadeIn 1s ease-out;
 }
 
 .btn-primary:hover {
     animation: pulse 1.5s infinite;
 }
-
