@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Upload Certificate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -13,9 +15,11 @@
     <form action="{{ url_for('verify_certificate') }}" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="predicted_group" value="{{ predicted_group }}">
       <label>Upload Blood Certificate</label>
-      <input type="file" name="certificate" accept="image/*,.pdf" required>
+      <input type="file" name="certificate" accept="image/*,.pdf">
       <button type="submit" class="btn">Verify Now</button>
     </form>
   </div>
+  <script src="{{ url_for('static', filename='js/particles.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </body>
 </html>

@@ -3,7 +3,8 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 
 def predict_blood_group(img_path):
-    model_path = 'model/model_blood_group_detection_lenet.keras'
+    # Use the same model path as the main app; relative to repo root
+    model_path = 'code/Lenet/model_blood_group_detection_lenet.keras'
     model = load_model(model_path)
 
     labels = {0: 'A+', 1: 'A-', 2: 'AB+', 3: 'AB-', 4: 'B+', 5: 'B-', 6: 'O+', 7: 'O-'}

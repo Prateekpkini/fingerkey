@@ -59,12 +59,13 @@ body {
 
 /* Upload Card */
 .upload-card {
-    width: 600px;
+    width: 100%;
+    max-width: 720px;
     margin: auto;
     background: white;
-    padding: 35px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .subtitle {
@@ -77,17 +78,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
 }
 
 .drop-area {
     border: 3px dashed #0B6EFE;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 22px;
+    border-radius: 12px;
     cursor: pointer;
     background: #F4F9FF;
-    transition: 0.3s;
-    width: 250px;
+    transition: 0.22s;
+    width: 240px;
+    min-height: 140px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .drop-area:hover {
@@ -108,21 +116,28 @@ body {
 .tips-list {
     text-align: left;
     color: #063B84;
-    font-size: 16px;
+    font-size: 15px;
+    margin: 0 0 8px 0;
+}
+
+.selected-file {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #084DBB;
 }
 
 /* Button */
 .predict-btn {
     width: 100%;
-    margin-top: 25px;
+    margin-top: 20px;
     background: #0B6EFE;
     color: white;
     border: none;
     padding: 12px;
-    font-size: 20px;
+    font-size: 18px;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.18s;
 }
 
 .predict-btn:hover {
@@ -140,6 +155,21 @@ body {
     margin-right: auto;
     box-shadow: 0 6px 18px rgba(0,0,0,0.1);
     animation: fadeIn 0.6s ease;
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+    .upload-card { padding: 18px; border-radius: 12px; }
+    .drop-area { width: 100%; min-height: 120px; }
+    .tips-list { font-size: 14px; }
+    .title { font-size: 26px; }
+    .upload-card { margin: 12px; }
+}
+
+.sr-only { /* simple screen-reader only helper */
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
 }
 
 @keyframes fadeIn {
