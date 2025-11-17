@@ -19,9 +19,21 @@
                         <label for="fileInput" class="form-label">Select a clear fingerprint image.</label>
                         <input class="form-control" type="file" name="fingerprint" id="fileInput" accept="image/*" required>
                     </div>
-                    <button class="btn btn-primary w-100 btn-lg" type="submit">
+
+                    <div class="mb-3 d-flex align-items-center gap-3 preview">
+                        <img id="previewImg" src="" alt="Selected fingerprint preview" hidden>
+                        <div>
+                            <p id="selectedFile" class="mb-1 text-muted">No file selected</p>
+                            <small class="text-muted">Accepted: JPG / PNG / BMP • Try to crop to the fingerprint area</small>
+                        </div>
+                    </div>
+
+                    <button id="predictBtn" class="btn btn-primary w-100 btn-lg" type="submit">
                         <i class="fas fa-cogs"></i> Predict Now
                     </button>
+                    <div class="text-center mt-3">
+                        <div id="spinner" class="spinner" role="status" aria-hidden="true" hidden></div>
+                    </div>
                 </form>
             </div>
         </div>

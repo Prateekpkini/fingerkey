@@ -135,3 +135,23 @@ body {
     bottom: 0;
     width: 100%;
 }
+
+/* --- App-specific enhancements --- */
+.preview img#previewImg{ max-width:120px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); display:block }
+.preview { align-items:center }
+
+.spinner{ width:32px; height:32px; border-radius:50%; border:4px solid rgba(255,255,255,0.12); border-top-color:var(--secondary-color); animation:spin 1s linear infinite; margin: 0 auto }
+@keyframes spin{ to{ transform:rotate(360deg) } }
+
+/* Small-screen tweaks */
+@media (max-width: 576px){
+    .hero-section h1{ font-size:2rem }
+    .card{ padding:18px }
+    .preview img#previewImg{ max-width:96px }
+}
+
+/* Flash notices */
+.flash{ background: rgba(0,0,0,0.25); padding:10px 12px; border-radius:8px; margin-bottom:12px }
+
+/* subtle focus ring for accessibility */
+input[type="file"]:focus, .btn:focus { outline: 3px solid rgba(37,117,252,0.12); outline-offset: 4px }
