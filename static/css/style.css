@@ -155,3 +155,28 @@ body {
 
 /* subtle focus ring for accessibility */
 input[type="file"]:focus, .btn:focus { outline: 3px solid rgba(37,117,252,0.12); outline-offset: 4px }
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 117, 252, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(37, 117, 252, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 117, 252, 0); }
+}
+
+.hero-section h1, .hero-section .lead {
+    animation: fadeIn 1s ease-out;
+}
+
+.card {
+    animation: fadeIn 1s ease-out;
+}
+
+.btn-primary:hover {
+    animation: pulse 1.5s infinite;
+}
+

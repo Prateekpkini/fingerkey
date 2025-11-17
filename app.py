@@ -12,15 +12,12 @@ app.secret_key = os.environ.get('FLASK_SECRET', 'please-change-this')
 # MODEL LOADING (UPDATE PATH IF NEEDED)
 # ---------------------------
 #MODEL_PATH = r"code/Lenet/model_blood_group_detection_lenet.keras"
-#model = None
-#if os.path.exists(MODEL_PATH):
- #   try:
-  #      model = load_model(MODEL_PATH)
-   #     print("✅ Model Loaded Successfully:", MODEL_PATH)
-   # except Exception as e:
-    #    print("⚠️ Failed to load model:", e)
-#else:
- #   print("⚠️ MODEL NOT FOUND at:", MODEL_PATH)
+
+#if not os.path.exists(MODEL_PATH):
+ #   raise FileNotFoundError("❌ MODEL NOT FOUND at: " + MODEL_PATH)
+
+#model = load_model(MODEL_PATH)
+#print("✅ Model Loaded Successfully:", MODEL_PATH)
 
 # ---------------------------
 # LABELS
@@ -97,7 +94,7 @@ def predict():
 @app.route('/verify-certificate', methods=['GET'])
 def verify_certificate_page():
     predicted_group = request.args.get('predicted_group')
-    return render_template('verify_certificate.html', predicted_group=predicted_group)
+    return render_template('verify.html', predicted_group=predicted_group)
 
 
 def _allowed_file(filename, allowed_set):
