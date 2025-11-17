@@ -1,35 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Register User</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-  <div id="particles-js"></div>
-  <div class="form-container">
-    <h2>🩸 Register New User</h2>
-    <form action="{{ url_for('register') }}" method="POST" enctype="multipart/form-data">
-      <label class="sr-only">Full Name</label>
-      <input type="text" name="name" placeholder="Full Name" required>
+{% extends "base.html" %}
+{% block title %}Register User{% endblock %}
 
-      <label class="sr-only">Email</label>
-      <input type="email" name="email" placeholder="Email" required>
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+        <h1 class="display-3 fw-bold">User Registration</h1>
+        <p class="lead fs-4">Register a new user by providing their details below.</p>
+    </div>
+</div>
 
-      <label class="sr-only">Phone Number</label>
-      <input type="text" name="phone" placeholder="Phone Number" required>
+<div class="row mt-5">
+    <div class="col-lg-6 mx-auto">
+        <div class="card">
+            <div class="card-body p-5">
+                <h5 class="card-title text-center fs-4 mb-4">Registration Form</h5>
+                <form action="{{ url_for('register') }}" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone Number">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" id="address" name="address" class="form-control" placeholder="Address">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fingerprint" class="form-label">Upload Fingerprint (Optional)</label>
+                        <input type="file" id="fingerprint" name="fingerprint" class="form-control" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 btn-lg">
+                        <i class="fas fa-paper-plane"></i> Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
 
-      <label class="sr-only">Address</label>
-      <input type="text" name="address" placeholder="Address" required>
-
-      <label>Upload Fingerprint</label>
-      <input type="file" name="fingerprint" accept="image/*">
-      <button type="submit" class="btn">Submit</button>
-    </form>
-  </div>
-  <script src="{{ url_for('static', filename='js/particles.js') }}" defer></script>
-  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
-</body>
-</html>

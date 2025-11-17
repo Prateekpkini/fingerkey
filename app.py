@@ -51,56 +51,50 @@ def home():
     return render_template("index.html")
 
 
-@app.route('/upload')
-def upload_page():
-    # simple alias to main upload page
-    return render_template('upload_fingerprint.html')
-
-
 # ---------------------------
 # PREDICT BLOOD GROUP
 # ---------------------------
 @app.route("/predict", methods=["POST"])
 def predict():
-    # Check file availability
     if "fingerprint" not in request.files:
-        return render_template(
-            "index.html",
-            prediction="No file uploaded",
-            confidence="0%"
-        )
+        flash("No file part")
+        return redirect(request.url)
 
     file = request.files["fingerprint"]
-
     if file.filename == "":
+        flash("No selected file")
+        return redirect(request.url)
+
+    if file and _allowed_file(file.filename, ALLOWED_IMAGE_EXTENSIONS):
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        file.save(file_path)
+
+        img = image.load_img(file_path, target_size=(224, 224))
+        img_array = image.img_to_array(img)
+        img_array = np.expand_dims(img_array, axis=0) / 255.0
+
+        result = model.predict(img_array)
+        predicted_class = np.argmax(result)
+        predicted_label = labels[predicted_class]
+        confidence_value = result[0][predicted_class] * 100
+        confidence = f"{confidence_value:.2f}%"
+
         return render_template(
             "index.html",
-            prediction="No file selected",
-            confidence="0%"
+            prediction=predicted_label,
+            confidence=confidence,
+            filename=filename
         )
+    else:
+        flash("Invalid file type")
+        return redirect(request.url)
 
-    # Save uploaded fingerprint
-    file_path = os.path.join(app.config["UPLOAD_FOLDER"], file.filename)
-    file.save(file_path)
 
-    # Preprocess image
-    img = image.load_img(file_path, target_size=(224, 224))
-    img_array = image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0) / 255.0
-
-    # Model prediction
-    result = model.predict(img_array)
-    predicted_class = np.argmax(result)
-    predicted_label = labels[predicted_class]
-    confidence_value = result[0][predicted_class] * 100
-    confidence = f"{confidence_value:.2f}%"
-
-    # Return prediction to frontend
-    return render_template(
-        "index.html",
-        prediction=predicted_label,
-        confidence=confidence
-    )
+@app.route('/verify-certificate', methods=['GET'])
+def verify_certificate_page():
+    predicted_group = request.args.get('predicted_group')
+    return render_template('verify.html', predicted_group=predicted_group)
 
 
 def _allowed_file(filename, allowed_set):
@@ -162,6 +156,7 @@ def verify_certificate():
         msg = 'Could not extract blood group from certificate. Manual verification required.'
 
     return render_template('result.html', message=msg)
+
 
 
 # ---------------------------
