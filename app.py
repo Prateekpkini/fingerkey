@@ -11,13 +11,13 @@ app.secret_key = os.environ.get('FLASK_SECRET', 'please-change-this')
 # ---------------------------
 # MODEL LOADING (UPDATE PATH IF NEEDED)
 # ---------------------------
-MODEL_PATH = r"code/Lenet/model_blood_group_detection_lenet.keras"
+#MODEL_PATH = r"code/Lenet/model_blood_group_detection_lenet.keras"
 
-if not os.path.exists(MODEL_PATH):
-    raise FileNotFoundError("❌ MODEL NOT FOUND at: " + MODEL_PATH)
+#if not os.path.exists(MODEL_PATH):
+ #   raise FileNotFoundError("❌ MODEL NOT FOUND at: " + MODEL_PATH)
 
-model = load_model(MODEL_PATH)
-print("✅ Model Loaded Successfully:", MODEL_PATH)
+#model = load_model(MODEL_PATH)
+#print("✅ Model Loaded Successfully:", MODEL_PATH)
 
 # ---------------------------
 # LABELS
